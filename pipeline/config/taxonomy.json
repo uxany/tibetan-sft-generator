@@ -1,0 +1,2507 @@
+{
+  "version": "2.0",
+  "l1_domains": [
+    {
+      "code": "1",
+      "name_zh": "语言理解与分析",
+      "name_en": "Understanding & Analysis",
+      "l2_task_types": [
+        {
+          "code": "1.1",
+          "name_zh": "阅读理解",
+          "name_en": "Reading Comprehension",
+          "l3_tasks": [
+            {
+              "task_code": "1.1.1",
+              "name_zh": "抽取式问答",
+              "description": "从文本中直接找到答案",
+              "example": "根据文章，作者出生于哪一年？"
+            },
+            {
+              "task_code": "1.1.2",
+              "name_zh": "推理式问答",
+              "description": "需要推理才能得出答案",
+              "example": "作者为什么做出这个决定？"
+            },
+            {
+              "task_code": "1.1.3",
+              "name_zh": "多选题问答",
+              "description": "从选项中选择正确答案",
+              "example": "以下哪项最能概括本文主旨？"
+            },
+            {
+              "task_code": "1.1.4",
+              "name_zh": "判断题",
+              "description": "判断陈述是否符合文本",
+              "example": "根据文章判断：X是正确的吗？"
+            },
+            {
+              "task_code": "1.1.5",
+              "name_zh": "填空式问答",
+              "description": "根据上下文填写缺失信息",
+              "example": "文中提到的三个原因是___、___和___"
+            },
+            {
+              "task_code": "1.1.6",
+              "name_zh": "长文档理解",
+              "description": "理解长篇文档并回答问题",
+              "example": "对长篇佛经的理解性问答"
+            },
+            {
+              "task_code": "1.1.7",
+              "name_zh": "多文档问答",
+              "description": "综合多个文档回答问题",
+              "example": "综合这三篇文章，总结共同观点"
+            },
+            {
+              "task_code": "1.1.8",
+              "name_zh": "对话理解",
+              "description": "理解对话内容并回答问题",
+              "example": "对话中，A为什么拒绝了B的提议？"
+            }
+          ]
+        },
+        {
+          "code": "1.2",
+          "name_zh": "文本分类",
+          "name_en": "Text Classification",
+          "l3_tasks": [
+            {
+              "task_code": "1.2.1",
+              "name_zh": "情感分析",
+              "description": "判断文本情感倾向",
+              "example": "这条评论是正面还是负面？"
+            },
+            {
+              "task_code": "1.2.2",
+              "name_zh": "主题分类",
+              "description": "判断文本所属主题/领域",
+              "example": "这篇文章属于哪个类别？"
+            },
+            {
+              "task_code": "1.2.3",
+              "name_zh": "意图识别",
+              "description": "识别用户意图",
+              "example": "用户想要查询信息还是投诉？"
+            },
+            {
+              "task_code": "1.2.4",
+              "name_zh": "情感强度",
+              "description": "判断情感的程度",
+              "example": "愤怒程度：轻微/中等/强烈"
+            },
+            {
+              "task_code": "1.2.5",
+              "name_zh": "立场检测",
+              "description": "判断作者对某话题的立场",
+              "example": "作者对这项政策持支持还是反对态度？"
+            },
+            {
+              "task_code": "1.2.6",
+              "name_zh": "讽刺检测",
+              "description": "判断是否包含讽刺意味",
+              "example": "这句话是认真的还是讽刺？"
+            },
+            {
+              "task_code": "1.2.7",
+              "name_zh": "文体识别",
+              "description": "识别文本的文体类型",
+              "example": "这是新闻报道还是评论文章？"
+            },
+            {
+              "task_code": "1.2.8",
+              "name_zh": "敬语级别识别",
+              "description": "识别藏文敬语使用级别",
+              "example": "这段对话使用的是普通体还是敬语体？"
+            },
+            {
+              "task_code": "1.2.9",
+              "name_zh": "方言识别",
+              "description": "识别藏文方言类型",
+              "example": "这段文字属于卫藏方言还是安多方言？"
+            },
+            {
+              "task_code": "1.2.10",
+              "name_zh": "有害内容检测",
+              "description": "识别有害/不当内容",
+              "example": "这段文字是否包含仇恨言论？"
+            }
+          ]
+        },
+        {
+          "code": "1.3",
+          "name_zh": "信息抽取",
+          "name_en": "Information Extraction",
+          "l3_tasks": [
+            {
+              "task_code": "1.3.1",
+              "name_zh": "命名实体识别",
+              "description": "识别人名、地名、机构名等",
+              "example": "标出文中所有人名和地名"
+            },
+            {
+              "task_code": "1.3.2",
+              "name_zh": "藏文人名识别",
+              "description": "识别藏族人名",
+              "example": "识别文中的藏族人名"
+            },
+            {
+              "task_code": "1.3.3",
+              "name_zh": "藏区地名识别",
+              "description": "识别藏区地名",
+              "example": "识别文中的藏区地名"
+            },
+            {
+              "task_code": "1.3.4",
+              "name_zh": "寺院名识别",
+              "description": "识别藏传佛教寺院名",
+              "example": "识别文中提到的寺院"
+            },
+            {
+              "task_code": "1.3.5",
+              "name_zh": "佛学术语识别",
+              "description": "识别佛学专有名词",
+              "example": "标出文中的佛学术语"
+            },
+            {
+              "task_code": "1.3.6",
+              "name_zh": "关系抽取",
+              "description": "抽取实体间的关系",
+              "example": "文中X和Y是什么关系？"
+            },
+            {
+              "task_code": "1.3.7",
+              "name_zh": "事件抽取",
+              "description": "抽取事件及其要素",
+              "example": "抽取：事件类型、时间、地点、参与者"
+            },
+            {
+              "task_code": "1.3.8",
+              "name_zh": "属性抽取",
+              "description": "抽取实体的属性",
+              "example": "这位人物的出生地、职业是什么？"
+            },
+            {
+              "task_code": "1.3.9",
+              "name_zh": "关键词抽取",
+              "description": "提取文本关键词",
+              "example": "提取这篇文章的5个关键词"
+            },
+            {
+              "task_code": "1.3.10",
+              "name_zh": "时间表达识别",
+              "description": "识别时间信息",
+              "example": "识别文中的藏历和公历日期"
+            },
+            {
+              "task_code": "1.3.11",
+              "name_zh": "数值信息抽取",
+              "description": "抽取数字和单位",
+              "example": "文中提到的金额和数量"
+            },
+            {
+              "task_code": "1.3.12",
+              "name_zh": "引用抽取",
+              "description": "抽取引用和出处",
+              "example": "这段引用出自哪部经典？"
+            }
+          ]
+        },
+        {
+          "code": "1.4",
+          "name_zh": "语言分析",
+          "name_en": "Linguistic Analysis",
+          "l3_tasks": [
+            {
+              "task_code": "1.4.1",
+              "name_zh": "分词",
+              "description": "藏文分词",
+              "example": "对这句藏文进行分词"
+            },
+            {
+              "task_code": "1.4.2",
+              "name_zh": "词性标注",
+              "description": "标注词性",
+              "example": "标注每个词的词性"
+            },
+            {
+              "task_code": "1.4.3",
+              "name_zh": "句法分析",
+              "description": "分析句子结构",
+              "example": "分析这个句子的语法结构"
+            },
+            {
+              "task_code": "1.4.4",
+              "name_zh": "依存关系分析",
+              "description": "分析词语间的依存关系",
+              "example": "标注词语间的依存关系"
+            },
+            {
+              "task_code": "1.4.5",
+              "name_zh": "语法错误检测",
+              "description": "检测语法错误",
+              "example": "这句话有语法错误吗？"
+            },
+            {
+              "task_code": "1.4.6",
+              "name_zh": "拼写错误检测",
+              "description": "检测拼写错误",
+              "example": "检查拼写是否正确"
+            },
+            {
+              "task_code": "1.4.7",
+              "name_zh": "词义消歧",
+              "description": "确定多义词的具体含义",
+              "example": "这个词在此处的含义是？"
+            },
+            {
+              "task_code": "1.4.8",
+              "name_zh": "指代消解",
+              "description": "确定代词指代对象",
+              "example": "文中的'他'指的是谁？"
+            },
+            {
+              "task_code": "1.4.9",
+              "name_zh": "语义角色标注",
+              "description": "标注句子的语义角色",
+              "example": "标注：施事、受事、工具等"
+            },
+            {
+              "task_code": "1.4.10",
+              "name_zh": "成分分析",
+              "description": "分析藏文词的构成",
+              "example": "分析这个藏文词的词根和词缀"
+            },
+            {
+              "task_code": "1.4.11",
+              "name_zh": "谚语俗语理解",
+              "description": "理解藏文谚语含义",
+              "example": "这句藏文谚语是什么意思？"
+            },
+            {
+              "task_code": "1.4.12",
+              "name_zh": "格助词辨析",
+              "description": "辨析藏文格助词的用法",
+              "example": "这里应该用哪个格助词？为什么？"
+            },
+            {
+              "task_code": "1.4.13",
+              "name_zh": "修辞手法分析",
+              "description": "分析藏文修辞手法",
+              "example": "这段藏文使用了什么修辞手法？"
+            },
+            {
+              "task_code": "1.4.14",
+              "name_zh": "古今藏文对比",
+              "description": "分析古今藏文差异",
+              "example": "这个古藏文表达在现代藏文中如何表述？"
+            }
+          ]
+        },
+        {
+          "code": "1.5",
+          "name_zh": "文本匹配与关系",
+          "name_en": "Text Matching & Relations",
+          "l3_tasks": [
+            {
+              "task_code": "1.5.1",
+              "name_zh": "语义相似度",
+              "description": "判断两段文本的相似程度",
+              "example": "这两句话意思相近吗？"
+            },
+            {
+              "task_code": "1.5.2",
+              "name_zh": "文本蕴含",
+              "description": "判断蕴含/矛盾/中立关系",
+              "example": "句子B能从句子A推导出来吗？"
+            },
+            {
+              "task_code": "1.5.3",
+              "name_zh": "释义判断",
+              "description": "判断是否为同义表达",
+              "example": "这两种说法是同一个意思吗？"
+            },
+            {
+              "task_code": "1.5.4",
+              "name_zh": "问答匹配",
+              "description": "判断答案是否匹配问题",
+              "example": "这个回答是否解答了问题？"
+            },
+            {
+              "task_code": "1.5.5",
+              "name_zh": "文档相关性",
+              "description": "判断文档与查询的相关性",
+              "example": "这篇文章与搜索词相关吗？"
+            },
+            {
+              "task_code": "1.5.6",
+              "name_zh": "重复检测",
+              "description": "检测重复或近似重复内容",
+              "example": "这两段内容是否重复？"
+            },
+            {
+              "task_code": "1.5.7",
+              "name_zh": "矛盾检测",
+              "description": "检测文本间的矛盾",
+              "example": "这两段陈述是否矛盾？"
+            }
+          ]
+        },
+        {
+          "code": "1.6",
+          "name_zh": "指令理解与遵循",
+          "name_en": "Instruction Understanding & Following",
+          "l3_tasks": [
+            {
+              "task_code": "1.6.1",
+              "name_zh": "格式约束遵循",
+              "description": "按指定格式输出",
+              "example": "请用JSON格式列出五种藏区特产"
+            },
+            {
+              "task_code": "1.6.2",
+              "name_zh": "长度约束遵循",
+              "description": "按指定长度输出",
+              "example": "请用不超过50字回答这个问题"
+            },
+            {
+              "task_code": "1.6.3",
+              "name_zh": "多条件约束",
+              "description": "同时满足多个约束条件",
+              "example": "用敬语写一段不超过100字的感谢信"
+            },
+            {
+              "task_code": "1.6.4",
+              "name_zh": "角色设定遵循",
+              "description": "按设定角色回答",
+              "example": "假设你是一名藏医，请回答这个问题"
+            },
+            {
+              "task_code": "1.6.5",
+              "name_zh": "否定指令理解",
+              "description": "理解不应做什么",
+              "example": "不要使用专业术语，用通俗的话解释"
+            },
+            {
+              "task_code": "1.6.6",
+              "name_zh": "多步骤指令执行",
+              "description": "按步骤完成复合任务",
+              "example": "先总结这段文字，然后翻译成中文，最后提出三点建议"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "2",
+      "name_zh": "语言生成",
+      "name_en": "Generation",
+      "l2_task_types": [
+        {
+          "code": "2.1",
+          "name_zh": "开放式写作",
+          "name_en": "Creative Writing",
+          "l3_tasks": [
+            {
+              "task_code": "2.1.1",
+              "name_zh": "故事创作",
+              "description": "创作短篇故事",
+              "example": "写一个关于牧民生活的故事"
+            },
+            {
+              "task_code": "2.1.2",
+              "name_zh": "诗歌创作",
+              "description": "创作诗歌",
+              "example": "写一首赞美雪山的诗"
+            },
+            {
+              "task_code": "2.1.3",
+              "name_zh": "藏文格律诗",
+              "description": "按藏文诗歌格律创作",
+              "example": "按照道歌体写一首诗"
+            },
+            {
+              "task_code": "2.1.4",
+              "name_zh": "散文创作",
+              "description": "创作散文",
+              "example": "写一篇关于家乡的散文"
+            },
+            {
+              "task_code": "2.1.5",
+              "name_zh": "剧本创作",
+              "description": "创作对话剧本",
+              "example": "写一段两人对话的剧本"
+            },
+            {
+              "task_code": "2.1.6",
+              "name_zh": "歌词创作",
+              "description": "创作歌词",
+              "example": "为这首旋律写藏文歌词"
+            },
+            {
+              "task_code": "2.1.7",
+              "name_zh": "寓言创作",
+              "description": "创作寓言故事",
+              "example": "写一则关于诚实的寓言"
+            },
+            {
+              "task_code": "2.1.8",
+              "name_zh": "童话创作",
+              "description": "创作儿童故事",
+              "example": "写一个适合儿童的故事"
+            },
+            {
+              "task_code": "2.1.9",
+              "name_zh": "祝福语创作",
+              "description": "创作祝福贺词",
+              "example": "写一段藏历新年祝福语"
+            },
+            {
+              "task_code": "2.1.10",
+              "name_zh": "格言警句",
+              "description": "创作格言或警句",
+              "example": "写几句关于勤奋的格言"
+            },
+            {
+              "task_code": "2.1.11",
+              "name_zh": "谚语格言仿写",
+              "description": "仿写藏文谚语格言",
+              "example": "仿照这句谚语的结构，创作一则新的谚语"
+            }
+          ]
+        },
+        {
+          "code": "2.2",
+          "name_zh": "实用写作",
+          "name_en": "Practical Writing",
+          "l3_tasks": [
+            {
+              "task_code": "2.2.1",
+              "name_zh": "邮件写作",
+              "description": "撰写各类邮件",
+              "example": "写一封请假邮件"
+            },
+            {
+              "task_code": "2.2.2",
+              "name_zh": "通知公告",
+              "description": "撰写通知",
+              "example": "写一份会议通知"
+            },
+            {
+              "task_code": "2.2.3",
+              "name_zh": "报告写作",
+              "description": "撰写工作报告",
+              "example": "写一份工作总结报告"
+            },
+            {
+              "task_code": "2.2.4",
+              "name_zh": "申请书",
+              "description": "撰写申请文书",
+              "example": "写一份入学申请书"
+            },
+            {
+              "task_code": "2.2.5",
+              "name_zh": "请柬/邀请函",
+              "description": "撰写邀请函",
+              "example": "写一份活动邀请函"
+            },
+            {
+              "task_code": "2.2.6",
+              "name_zh": "感谢信",
+              "description": "撰写感谢信",
+              "example": "写一封感谢老师的信"
+            },
+            {
+              "task_code": "2.2.7",
+              "name_zh": "道歉信",
+              "description": "撰写道歉信",
+              "example": "写一封道歉信"
+            },
+            {
+              "task_code": "2.2.8",
+              "name_zh": "推荐信",
+              "description": "撰写推荐信",
+              "example": "写一封学生推荐信"
+            },
+            {
+              "task_code": "2.2.9",
+              "name_zh": "简历",
+              "description": "撰写个人简历",
+              "example": "帮我写一份简历"
+            },
+            {
+              "task_code": "2.2.10",
+              "name_zh": "求职信",
+              "description": "撰写求职信",
+              "example": "写一份教师岗位求职信"
+            },
+            {
+              "task_code": "2.2.11",
+              "name_zh": "演讲稿",
+              "description": "撰写演讲稿",
+              "example": "写一篇毕业典礼演讲稿"
+            },
+            {
+              "task_code": "2.2.12",
+              "name_zh": "新闻稿",
+              "description": "撰写新闻报道",
+              "example": "根据这些信息写一篇新闻稿"
+            },
+            {
+              "task_code": "2.2.13",
+              "name_zh": "广告文案",
+              "description": "撰写广告文案",
+              "example": "为这个产品写广告语"
+            },
+            {
+              "task_code": "2.2.14",
+              "name_zh": "产品说明",
+              "description": "撰写产品说明书",
+              "example": "写一份使用说明"
+            },
+            {
+              "task_code": "2.2.15",
+              "name_zh": "合同协议",
+              "description": "撰写简单合同",
+              "example": "起草一份租房合同"
+            },
+            {
+              "task_code": "2.2.16",
+              "name_zh": "会议纪要",
+              "description": "撰写会议记录",
+              "example": "根据要点写会议纪要"
+            },
+            {
+              "task_code": "2.2.17",
+              "name_zh": "藏文公文",
+              "description": "藏文官方公文格式",
+              "example": "用藏文公文格式写通知"
+            }
+          ]
+        },
+        {
+          "code": "2.3",
+          "name_zh": "摘要生成",
+          "name_en": "Summarization",
+          "l3_tasks": [
+            {
+              "task_code": "2.3.1",
+              "name_zh": "单文档摘要",
+              "description": "对单篇文档生成摘要",
+              "example": "用100字概括这篇文章"
+            },
+            {
+              "task_code": "2.3.2",
+              "name_zh": "多文档摘要",
+              "description": "综合多篇文档生成摘要",
+              "example": "综合这三篇报道写一个摘要"
+            },
+            {
+              "task_code": "2.3.3",
+              "name_zh": "新闻摘要",
+              "description": "生成新闻摘要",
+              "example": "写这篇新闻的标题和导语"
+            },
+            {
+              "task_code": "2.3.4",
+              "name_zh": "论文摘要",
+              "description": "生成学术摘要",
+              "example": "为这篇论文写摘要"
+            },
+            {
+              "task_code": "2.3.5",
+              "name_zh": "书籍摘要",
+              "description": "生成书籍内容摘要",
+              "example": "概括这本书的主要内容"
+            },
+            {
+              "task_code": "2.3.6",
+              "name_zh": "会议摘要",
+              "description": "生成会议内容摘要",
+              "example": "总结这次会议的要点"
+            },
+            {
+              "task_code": "2.3.7",
+              "name_zh": "对话摘要",
+              "description": "生成对话内容摘要",
+              "example": "总结这段对话的主要内容"
+            },
+            {
+              "task_code": "2.3.8",
+              "name_zh": "要点提取",
+              "description": "提取文章要点",
+              "example": "列出这篇文章的要点"
+            },
+            {
+              "task_code": "2.3.9",
+              "name_zh": "一句话总结",
+              "description": "极简摘要",
+              "example": "用一句话总结这篇文章"
+            },
+            {
+              "task_code": "2.3.10",
+              "name_zh": "关键信息摘要",
+              "description": "抽取关键信息",
+              "example": "提取时间、地点、人物、事件"
+            }
+          ]
+        },
+        {
+          "code": "2.4",
+          "name_zh": "续写与扩写",
+          "name_en": "Continuation & Expansion",
+          "l3_tasks": [
+            {
+              "task_code": "2.4.1",
+              "name_zh": "段落续写",
+              "description": "续写段落内容",
+              "example": "继续写下一段"
+            },
+            {
+              "task_code": "2.4.2",
+              "name_zh": "故事续写",
+              "description": "续写故事情节",
+              "example": "续写这个故事的结局"
+            },
+            {
+              "task_code": "2.4.3",
+              "name_zh": "大纲扩写",
+              "description": "将大纲扩展为文章",
+              "example": "根据大纲写完整文章"
+            },
+            {
+              "task_code": "2.4.4",
+              "name_zh": "句子扩展",
+              "description": "扩展简单句子",
+              "example": "把这句话扩展得更详细"
+            },
+            {
+              "task_code": "2.4.5",
+              "name_zh": "细节补充",
+              "description": "补充细节内容",
+              "example": "为这段描写增加感官细节"
+            },
+            {
+              "task_code": "2.4.6",
+              "name_zh": "论点展开",
+              "description": "展开论述论点",
+              "example": "详细论述这个观点"
+            },
+            {
+              "task_code": "2.4.7",
+              "name_zh": "例证补充",
+              "description": "补充例子和证据",
+              "example": "为这个论点增加例子"
+            },
+            {
+              "task_code": "2.4.8",
+              "name_zh": "段落重组",
+              "description": "重新组织段落结构",
+              "example": "重新组织这些内容"
+            }
+          ]
+        },
+        {
+          "code": "2.5",
+          "name_zh": "对话生成",
+          "name_en": "Dialogue Generation",
+          "l3_tasks": [
+            {
+              "task_code": "2.5.1",
+              "name_zh": "单轮问答",
+              "description": "生成单轮对话回复",
+              "example": "标准问答对"
+            },
+            {
+              "task_code": "2.5.2",
+              "name_zh": "多轮对话",
+              "description": "生成多轮对话",
+              "example": "包含上下文的连续对话"
+            },
+            {
+              "task_code": "2.5.3",
+              "name_zh": "任务型对话",
+              "description": "完成特定任务的对话",
+              "example": "\"帮我订一张机票\"的对话"
+            },
+            {
+              "task_code": "2.5.4",
+              "name_zh": "闲聊对话",
+              "description": "日常闲聊对话",
+              "example": "社交性质的对话"
+            },
+            {
+              "task_code": "2.5.5",
+              "name_zh": "敬语对话",
+              "description": "使用藏语敬语的对话",
+              "example": "对长辈/僧人的敬语对话"
+            },
+            {
+              "task_code": "2.5.6",
+              "name_zh": "角色扮演对话",
+              "description": "扮演特定角色对话",
+              "example": "你扮演一位老师"
+            },
+            {
+              "task_code": "2.5.7",
+              "name_zh": "采访对话",
+              "description": "模拟采访问答",
+              "example": "采访形式的对话"
+            },
+            {
+              "task_code": "2.5.8",
+              "name_zh": "客服对话",
+              "description": "客户服务场景对话",
+              "example": "咨询、投诉处理对话"
+            },
+            {
+              "task_code": "2.5.9",
+              "name_zh": "教学对话",
+              "description": "教学辅导对话",
+              "example": "老师与学生的对话"
+            },
+            {
+              "task_code": "2.5.10",
+              "name_zh": "谈判协商对话",
+              "description": "协商场景对话",
+              "example": "价格谈判等对话"
+            }
+          ]
+        },
+        {
+          "code": "2.6",
+          "name_zh": "标题与命名",
+          "name_en": "Title & Naming",
+          "l3_tasks": [
+            {
+              "task_code": "2.6.1",
+              "name_zh": "文章标题",
+              "description": "为文章生成标题",
+              "example": "为这篇文章起一个标题"
+            },
+            {
+              "task_code": "2.6.2",
+              "name_zh": "新闻标题",
+              "description": "生成新闻标题",
+              "example": "写一个吸引人的新闻标题"
+            },
+            {
+              "task_code": "2.6.3",
+              "name_zh": "产品命名",
+              "description": "为产品起名",
+              "example": "为这个品牌起一个藏文名字"
+            },
+            {
+              "task_code": "2.6.4",
+              "name_zh": "项目命名",
+              "description": "为项目命名",
+              "example": "为这个项目起一个名字"
+            },
+            {
+              "task_code": "2.6.5",
+              "name_zh": "章节标题",
+              "description": "生成章节小标题",
+              "example": "为这些章节起标题"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "3",
+      "name_zh": "文本转换",
+      "name_en": "Transformation",
+      "l2_task_types": [
+        {
+          "code": "3.1",
+          "name_zh": "翻译",
+          "name_en": "Translation",
+          "l3_tasks": [
+            {
+              "task_code": "3.1.1",
+              "name_zh": "藏文→中文",
+              "description": "藏译汉",
+              "example": "将这段藏文翻译成中文"
+            },
+            {
+              "task_code": "3.1.2",
+              "name_zh": "中文→藏文",
+              "description": "汉译藏",
+              "example": "将这段中文翻译成藏文"
+            },
+            {
+              "task_code": "3.1.3",
+              "name_zh": "藏文→英文",
+              "description": "藏译英",
+              "example": "将这段藏文翻译成英文"
+            },
+            {
+              "task_code": "3.1.4",
+              "name_zh": "英文→藏文",
+              "description": "英译藏",
+              "example": "将这段英文翻译成藏文"
+            },
+            {
+              "task_code": "3.1.5",
+              "name_zh": "文学翻译",
+              "description": "文学作品翻译",
+              "example": "翻译这首诗，保留意境"
+            },
+            {
+              "task_code": "3.1.6",
+              "name_zh": "技术翻译",
+              "description": "技术文档翻译",
+              "example": "翻译这份技术文档"
+            },
+            {
+              "task_code": "3.1.7",
+              "name_zh": "法律翻译",
+              "description": "法律文本翻译",
+              "example": "翻译这份法律文件"
+            },
+            {
+              "task_code": "3.1.8",
+              "name_zh": "医学翻译",
+              "description": "医学文本翻译",
+              "example": "翻译这段医学说明"
+            },
+            {
+              "task_code": "3.1.9",
+              "name_zh": "佛经翻译",
+              "description": "佛学文献翻译",
+              "example": "翻译这段经文"
+            },
+            {
+              "task_code": "3.1.10",
+              "name_zh": "口语翻译",
+              "description": "口语化翻译",
+              "example": "用口语化的方式翻译"
+            },
+            {
+              "task_code": "3.1.11",
+              "name_zh": "术语翻译",
+              "description": "专业术语翻译",
+              "example": "这个术语用藏文怎么说？"
+            },
+            {
+              "task_code": "3.1.12",
+              "name_zh": "古藏文→现代藏文",
+              "description": "古今藏文转换",
+              "example": "把这段古藏文转为现代藏文"
+            },
+            {
+              "task_code": "3.1.13",
+              "name_zh": "多语对照",
+              "description": "生成多语对照文本",
+              "example": "给出藏汉英三语对照"
+            }
+          ]
+        },
+        {
+          "code": "3.2",
+          "name_zh": "改写与润色",
+          "name_en": "Rewriting & Polishing",
+          "l3_tasks": [
+            {
+              "task_code": "3.2.1",
+              "name_zh": "风格转换",
+              "description": "改变文本风格",
+              "example": "把这段改成正式风格"
+            },
+            {
+              "task_code": "3.2.2",
+              "name_zh": "口语化",
+              "description": "转为口语表达",
+              "example": "用口语重新表达这句话"
+            },
+            {
+              "task_code": "3.2.3",
+              "name_zh": "正式化",
+              "description": "转为正式表达",
+              "example": "用正式语言重写这段"
+            },
+            {
+              "task_code": "3.2.4",
+              "name_zh": "简化",
+              "description": "简化复杂内容",
+              "example": "用简单的话重新说"
+            },
+            {
+              "task_code": "3.2.5",
+              "name_zh": "详细化",
+              "description": "增加详细程度",
+              "example": "把这段写得更详细"
+            },
+            {
+              "task_code": "3.2.6",
+              "name_zh": "语法纠错",
+              "description": "修正语法错误",
+              "example": "修正这段文字的语法错误"
+            },
+            {
+              "task_code": "3.2.7",
+              "name_zh": "拼写纠错",
+              "description": "修正拼写错误",
+              "example": "修正拼写错误"
+            },
+            {
+              "task_code": "3.2.8",
+              "name_zh": "润色优化",
+              "description": "整体润色",
+              "example": "润色这段文字"
+            },
+            {
+              "task_code": "3.2.9",
+              "name_zh": "去重复",
+              "description": "去除重复内容",
+              "example": "去除这段中的重复表达"
+            },
+            {
+              "task_code": "3.2.10",
+              "name_zh": "逻辑理顺",
+              "description": "理顺逻辑关系",
+              "example": "理顺这段的逻辑"
+            },
+            {
+              "task_code": "3.2.11",
+              "name_zh": "方言→标准",
+              "description": "方言转标准藏文",
+              "example": "把这段安多方言转为书面藏文"
+            },
+            {
+              "task_code": "3.2.12",
+              "name_zh": "敬语转换",
+              "description": "敬语与普通体转换",
+              "example": "把这段改成敬语体"
+            },
+            {
+              "task_code": "3.2.13",
+              "name_zh": "时态转换",
+              "description": "改变时态",
+              "example": "把这段改成过去时"
+            },
+            {
+              "task_code": "3.2.14",
+              "name_zh": "人称转换",
+              "description": "改变人称",
+              "example": "把第一人称改成第三人称"
+            },
+            {
+              "task_code": "3.2.15",
+              "name_zh": "长度调整",
+              "description": "调整文本长度",
+              "example": "把这段缩短到100字"
+            }
+          ]
+        },
+        {
+          "code": "3.3",
+          "name_zh": "格式转换",
+          "name_en": "Format Conversion",
+          "l3_tasks": [
+            {
+              "task_code": "3.3.1",
+              "name_zh": "文本→表格",
+              "description": "将文本转为表格",
+              "example": "把这段信息整理成表格"
+            },
+            {
+              "task_code": "3.3.2",
+              "name_zh": "表格→文本",
+              "description": "将表格转为文本",
+              "example": "用文字描述这个表格"
+            },
+            {
+              "task_code": "3.3.3",
+              "name_zh": "文本→JSON",
+              "description": "转为JSON格式",
+              "example": "把这些信息转成JSON"
+            },
+            {
+              "task_code": "3.3.4",
+              "name_zh": "文本→列表",
+              "description": "转为列表格式",
+              "example": "把这段转成要点列表"
+            },
+            {
+              "task_code": "3.3.5",
+              "name_zh": "列表→段落",
+              "description": "列表转为段落",
+              "example": "把这些要点写成段落"
+            },
+            {
+              "task_code": "3.3.6",
+              "name_zh": "文本→Markdown",
+              "description": "转为Markdown",
+              "example": "用Markdown格式排版"
+            },
+            {
+              "task_code": "3.3.7",
+              "name_zh": "非结构化→结构化",
+              "description": "信息结构化",
+              "example": "从这段文字中抽取结构化信息"
+            },
+            {
+              "task_code": "3.3.8",
+              "name_zh": "文本清洗",
+              "description": "清理杂乱文本",
+              "example": "清理这段OCR文本"
+            },
+            {
+              "task_code": "3.3.9",
+              "name_zh": "格式标准化",
+              "description": "统一格式",
+              "example": "统一日期和数字格式"
+            },
+            {
+              "task_code": "3.3.10",
+              "name_zh": "数据规范化",
+              "description": "数据规范化处理",
+              "example": "规范化这些地址信息"
+            }
+          ]
+        },
+        {
+          "code": "3.4",
+          "name_zh": "转写",
+          "name_en": "Transliteration",
+          "l3_tasks": [
+            {
+              "task_code": "3.4.1",
+              "name_zh": "藏文→Wylie转写",
+              "description": "转为Wylie拉丁转写",
+              "example": "把这段藏文转为Wylie"
+            },
+            {
+              "task_code": "3.4.2",
+              "name_zh": "Wylie→藏文",
+              "description": "Wylie转为藏文",
+              "example": "把Wylie转写还原为藏文"
+            },
+            {
+              "task_code": "3.4.3",
+              "name_zh": "藏文→国际音标",
+              "description": "转为IPA音标",
+              "example": "给出这个词的国际音标"
+            },
+            {
+              "task_code": "3.4.4",
+              "name_zh": "藏文→拼音转写",
+              "description": "转为拼音式转写",
+              "example": "给出藏文的拼音转写"
+            },
+            {
+              "task_code": "3.4.5",
+              "name_zh": "梵藏转写",
+              "description": "梵文藏文转写",
+              "example": "这个梵文术语的藏文是什么"
+            },
+            {
+              "task_code": "3.4.6",
+              "name_zh": "人名音译",
+              "description": "外国人名藏文音译",
+              "example": "这个人名用藏文怎么写"
+            },
+            {
+              "task_code": "3.4.7",
+              "name_zh": "地名音译",
+              "description": "外国地名藏文音译",
+              "example": "这个地名用藏文怎么写"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "4",
+      "name_zh": "知识与推理",
+      "name_en": "Knowledge & Reasoning",
+      "l2_task_types": [
+        {
+          "code": "4.1",
+          "name_zh": "事实问答",
+          "name_en": "Factual QA",
+          "l3_tasks": [
+            {
+              "task_code": "4.1.1",
+              "name_zh": "百科问答",
+              "description": "百科知识问答",
+              "example": "珠穆朗玛峰有多高？"
+            },
+            {
+              "task_code": "4.1.2",
+              "name_zh": "常识问答",
+              "description": "日常常识问答",
+              "example": "水的沸点是多少？"
+            },
+            {
+              "task_code": "4.1.3",
+              "name_zh": "历史问答",
+              "description": "历史知识问答",
+              "example": "吐蕃王朝何时建立？"
+            },
+            {
+              "task_code": "4.1.4",
+              "name_zh": "地理问答",
+              "description": "地理知识问答",
+              "example": "拉萨的海拔是多少？"
+            },
+            {
+              "task_code": "4.1.5",
+              "name_zh": "人物问答",
+              "description": "人物信息问答",
+              "example": "松赞干布是谁？"
+            },
+            {
+              "task_code": "4.1.6",
+              "name_zh": "藏区文化问答",
+              "description": "藏区特有文化知识",
+              "example": "藏历新年有什么习俗？"
+            },
+            {
+              "task_code": "4.1.7",
+              "name_zh": "佛学常识问答",
+              "description": "佛教基础知识",
+              "example": "三宝是指什么？"
+            },
+            {
+              "task_code": "4.1.8",
+              "name_zh": "科学问答",
+              "description": "科学知识问答",
+              "example": "光合作用的原理是什么？"
+            },
+            {
+              "task_code": "4.1.9",
+              "name_zh": "时事问答",
+              "description": "时事新闻问答",
+              "example": "最近有什么重要新闻？"
+            },
+            {
+              "task_code": "4.1.10",
+              "name_zh": "定义问答",
+              "description": "概念定义",
+              "example": "什么是区块链？"
+            },
+            {
+              "task_code": "4.1.11",
+              "name_zh": "数字/统计问答",
+              "description": "数据统计类问答",
+              "example": "西藏的人口有多少？"
+            },
+            {
+              "task_code": "4.1.12",
+              "name_zh": "是非问答",
+              "description": "判断真假",
+              "example": "地球是平的吗？"
+            }
+          ]
+        },
+        {
+          "code": "4.2",
+          "name_zh": "解释说明",
+          "name_en": "Explanation",
+          "l3_tasks": [
+            {
+              "task_code": "4.2.1",
+              "name_zh": "概念解释",
+              "description": "解释概念",
+              "example": "解释什么是人工智能"
+            },
+            {
+              "task_code": "4.2.2",
+              "name_zh": "原理讲解",
+              "description": "讲解原理",
+              "example": "解释DNA复制的原理"
+            },
+            {
+              "task_code": "4.2.3",
+              "name_zh": "佛学术语解释",
+              "description": "解释佛学概念",
+              "example": "解释什么是'空性'"
+            },
+            {
+              "task_code": "4.2.4",
+              "name_zh": "过程描述",
+              "description": "描述过程步骤",
+              "example": "描述光合作用的过程"
+            },
+            {
+              "task_code": "4.2.5",
+              "name_zh": "原因分析",
+              "description": "分析原因",
+              "example": "为什么天是蓝色的？"
+            },
+            {
+              "task_code": "4.2.6",
+              "name_zh": "现象解释",
+              "description": "解释现象",
+              "example": "为什么会有彩虹？"
+            },
+            {
+              "task_code": "4.2.7",
+              "name_zh": "类比解释",
+              "description": "用类比解释",
+              "example": "用简单的比喻解释量子力学"
+            },
+            {
+              "task_code": "4.2.8",
+              "name_zh": "分级解释",
+              "description": "不同深度的解释",
+              "example": "给五岁孩子解释这个概念"
+            },
+            {
+              "task_code": "4.2.9",
+              "name_zh": "差异解释",
+              "description": "解释区别",
+              "example": "A和B有什么区别？"
+            },
+            {
+              "task_code": "4.2.10",
+              "name_zh": "词源解释",
+              "description": "解释词语来源",
+              "example": "这个藏文词的词源是什么"
+            },
+            {
+              "task_code": "4.2.11",
+              "name_zh": "用法解释",
+              "description": "解释使用方法",
+              "example": "这个词怎么使用？"
+            },
+            {
+              "task_code": "4.2.12",
+              "name_zh": "文化背景解释",
+              "description": "解释文化背景",
+              "example": "这个习俗背后的含义是什么"
+            }
+          ]
+        },
+        {
+          "code": "4.3",
+          "name_zh": "推理",
+          "name_en": "Reasoning",
+          "l3_tasks": [
+            {
+              "task_code": "4.3.1",
+              "name_zh": "数学计算",
+              "description": "数学计算题",
+              "example": "计算：125 × 48 = ?"
+            },
+            {
+              "task_code": "4.3.2",
+              "name_zh": "数学应用题",
+              "description": "数学应用问题",
+              "example": "小明有5个苹果..."
+            },
+            {
+              "task_code": "4.3.3",
+              "name_zh": "逻辑推理",
+              "description": "逻辑推理题",
+              "example": "如果A则B，已知B，求A？"
+            },
+            {
+              "task_code": "4.3.4",
+              "name_zh": "常识推理",
+              "description": "基于常识的推理",
+              "example": "下雨了，小明没带伞，会怎样？"
+            },
+            {
+              "task_code": "4.3.5",
+              "name_zh": "因果推理",
+              "description": "推断因果关系",
+              "example": "这件事的原因可能是什么？"
+            },
+            {
+              "task_code": "4.3.6",
+              "name_zh": "时序推理",
+              "description": "时间顺序推理",
+              "example": "这些事件的正确顺序是？"
+            },
+            {
+              "task_code": "4.3.7",
+              "name_zh": "空间推理",
+              "description": "空间关系推理",
+              "example": "A在B的东边，C在A的北边..."
+            },
+            {
+              "task_code": "4.3.8",
+              "name_zh": "类比推理",
+              "description": "类比关系推理",
+              "example": "苹果:水果 = 玫瑰:?"
+            },
+            {
+              "task_code": "4.3.9",
+              "name_zh": "归纳推理",
+              "description": "从具体到一般",
+              "example": "根据这些例子，总结规律"
+            },
+            {
+              "task_code": "4.3.10",
+              "name_zh": "演绎推理",
+              "description": "从一般到具体",
+              "example": "根据这个规则，推断结果"
+            },
+            {
+              "task_code": "4.3.11",
+              "name_zh": "反事实推理",
+              "description": "假设情境推理",
+              "example": "如果当时...会怎样？"
+            },
+            {
+              "task_code": "4.3.12",
+              "name_zh": "多步推理",
+              "description": "需要多步的推理",
+              "example": "复杂的连续推理问题"
+            }
+          ]
+        },
+        {
+          "code": "4.4",
+          "name_zh": "建议咨询",
+          "name_en": "Advice & Consultation",
+          "l3_tasks": [
+            {
+              "task_code": "4.4.1",
+              "name_zh": "方案建议",
+              "description": "提供方案建议",
+              "example": "我该选择A还是B？"
+            },
+            {
+              "task_code": "4.4.2",
+              "name_zh": "决策支持",
+              "description": "帮助决策",
+              "example": "帮我分析这个决定的利弊"
+            },
+            {
+              "task_code": "4.4.3",
+              "name_zh": "问题解决",
+              "description": "提供解决方案",
+              "example": "这个问题怎么解决？"
+            },
+            {
+              "task_code": "4.4.4",
+              "name_zh": "学习建议",
+              "description": "学习方法建议",
+              "example": "怎样学好藏文？"
+            },
+            {
+              "task_code": "4.4.5",
+              "name_zh": "职业建议",
+              "description": "职业发展建议",
+              "example": "我适合做什么工作？"
+            },
+            {
+              "task_code": "4.4.6",
+              "name_zh": "生活建议",
+              "description": "日常生活建议",
+              "example": "怎样养成好习惯？"
+            },
+            {
+              "task_code": "4.4.7",
+              "name_zh": "健康建议",
+              "description": "健康生活建议",
+              "example": "怎样保持健康？"
+            },
+            {
+              "task_code": "4.4.8",
+              "name_zh": "藏医建议",
+              "description": "藏医养生建议",
+              "example": "从藏医角度，这个症状..."
+            },
+            {
+              "task_code": "4.4.9",
+              "name_zh": "旅行建议",
+              "description": "旅行规划建议",
+              "example": "去拉萨旅行有什么建议？"
+            },
+            {
+              "task_code": "4.4.10",
+              "name_zh": "购物建议",
+              "description": "购买建议",
+              "example": "买X产品应该注意什么？"
+            },
+            {
+              "task_code": "4.4.11",
+              "name_zh": "人际建议",
+              "description": "人际关系建议",
+              "example": "怎样处理这种关系？"
+            },
+            {
+              "task_code": "4.4.12",
+              "name_zh": "情感建议",
+              "description": "情感问题建议",
+              "example": "我该如何面对这种情况？"
+            }
+          ]
+        },
+        {
+          "code": "4.5",
+          "name_zh": "比较分析",
+          "name_en": "Comparison & Analysis",
+          "l3_tasks": [
+            {
+              "task_code": "4.5.1",
+              "name_zh": "优缺点对比",
+              "description": "分析优缺点",
+              "example": "A和B各有什么优缺点？"
+            },
+            {
+              "task_code": "4.5.2",
+              "name_zh": "相似点分析",
+              "description": "分析相似之处",
+              "example": "这两者有什么共同点？"
+            },
+            {
+              "task_code": "4.5.3",
+              "name_zh": "差异分析",
+              "description": "分析不同之处",
+              "example": "这两者有什么区别？"
+            },
+            {
+              "task_code": "4.5.4",
+              "name_zh": "多选项评估",
+              "description": "评估多个选项",
+              "example": "比较这三个方案"
+            },
+            {
+              "task_code": "4.5.5",
+              "name_zh": "趋势分析",
+              "description": "分析发展趋势",
+              "example": "这个领域的发展趋势是什么？"
+            },
+            {
+              "task_code": "4.5.6",
+              "name_zh": "利弊分析",
+              "description": "分析利弊",
+              "example": "这样做有什么利弊？"
+            },
+            {
+              "task_code": "4.5.7",
+              "name_zh": "可行性分析",
+              "description": "分析可行性",
+              "example": "这个方案可行吗？"
+            },
+            {
+              "task_code": "4.5.8",
+              "name_zh": "排名评估",
+              "description": "进行排名",
+              "example": "这些选项哪个最好？"
+            },
+            {
+              "task_code": "4.5.9",
+              "name_zh": "综合评价",
+              "description": "综合评价",
+              "example": "整体评价一下这个..."
+            },
+            {
+              "task_code": "4.5.10",
+              "name_zh": "历史对比",
+              "description": "历史比较分析",
+              "example": "古代和现代有什么区别？"
+            }
+          ]
+        },
+        {
+          "code": "4.6",
+          "name_zh": "创意与头脑风暴",
+          "name_en": "Creative Ideation",
+          "l3_tasks": [
+            {
+              "task_code": "4.6.1",
+              "name_zh": "创意生成",
+              "description": "生成创意点子",
+              "example": "给我一些项目创意"
+            },
+            {
+              "task_code": "4.6.2",
+              "name_zh": "名称创意",
+              "description": "起名字点子",
+              "example": "帮我想几个店名"
+            },
+            {
+              "task_code": "4.6.3",
+              "name_zh": "主题创意",
+              "description": "主题想法",
+              "example": "有什么好的演讲主题？"
+            },
+            {
+              "task_code": "4.6.4",
+              "name_zh": "礼物创意",
+              "description": "礼物建议",
+              "example": "送什么礼物好？"
+            },
+            {
+              "task_code": "4.6.5",
+              "name_zh": "活动创意",
+              "description": "活动策划想法",
+              "example": "有什么有趣的团建活动？"
+            },
+            {
+              "task_code": "4.6.6",
+              "name_zh": "解决方案创意",
+              "description": "创新解决方案",
+              "example": "有什么新颖的方法？"
+            },
+            {
+              "task_code": "4.6.7",
+              "name_zh": "内容创意",
+              "description": "内容选题想法",
+              "example": "写什么内容好？"
+            },
+            {
+              "task_code": "4.6.8",
+              "name_zh": "设计创意",
+              "description": "设计想法",
+              "example": "有什么设计灵感？"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "5",
+      "name_zh": "专业领域",
+      "name_en": "Domain-Specific",
+      "l2_task_types": [
+        {
+          "code": "5.1",
+          "name_zh": "佛学文献",
+          "name_en": "Buddhist Studies",
+          "l3_tasks": [
+            {
+              "task_code": "5.1.1",
+              "name_zh": "经文解读",
+              "description": "解读佛经内容",
+              "example": "解释这段经文的含义"
+            },
+            {
+              "task_code": "5.1.2",
+              "name_zh": "术语解释",
+              "description": "解释佛学术语",
+              "example": "什么是'菩提心'？"
+            },
+            {
+              "task_code": "5.1.3",
+              "name_zh": "仪轨说明",
+              "description": "说明佛教仪轨",
+              "example": "这个仪轨的步骤是什么？"
+            },
+            {
+              "task_code": "5.1.4",
+              "name_zh": "教派介绍",
+              "description": "介绍藏传佛教教派",
+              "example": "格鲁派的特点是什么？"
+            },
+            {
+              "task_code": "5.1.5",
+              "name_zh": "人物介绍",
+              "description": "介绍高僧大德",
+              "example": "宗喀巴大师的生平"
+            },
+            {
+              "task_code": "5.1.6",
+              "name_zh": "典籍介绍",
+              "description": "介绍佛教典籍",
+              "example": "《菩提道次第广论》的内容"
+            },
+            {
+              "task_code": "5.1.7",
+              "name_zh": "修行指导",
+              "description": "修行方法指导",
+              "example": "如何修习禅定？"
+            },
+            {
+              "task_code": "5.1.8",
+              "name_zh": "节日习俗",
+              "description": "佛教节日说明",
+              "example": "萨嘎达瓦节的意义"
+            },
+            {
+              "task_code": "5.1.9",
+              "name_zh": "寺院介绍",
+              "description": "介绍藏区寺院",
+              "example": "介绍一下大昭寺"
+            },
+            {
+              "task_code": "5.1.10",
+              "name_zh": "法器说明",
+              "description": "说明佛教法器",
+              "example": "转经筒的作用是什么？"
+            },
+            {
+              "task_code": "5.1.11",
+              "name_zh": "经文背诵",
+              "description": "经文记忆辅助",
+              "example": "六字真言的含义和念法"
+            },
+            {
+              "task_code": "5.1.12",
+              "name_zh": "梵藏对照",
+              "description": "梵藏术语对照",
+              "example": "这个梵文术语的藏文是什么"
+            }
+          ]
+        },
+        {
+          "code": "5.2",
+          "name_zh": "医学健康",
+          "name_en": "Medicine & Health",
+          "l3_tasks": [
+            {
+              "task_code": "5.2.1",
+              "name_zh": "症状咨询",
+              "description": "症状相关问答",
+              "example": "头痛可能是什么原因？"
+            },
+            {
+              "task_code": "5.2.2",
+              "name_zh": "疾病解释",
+              "description": "解释疾病知识",
+              "example": "什么是高血压？"
+            },
+            {
+              "task_code": "5.2.3",
+              "name_zh": "用药指导",
+              "description": "药物使用说明",
+              "example": "这个药怎么吃？"
+            },
+            {
+              "task_code": "5.2.4",
+              "name_zh": "急救知识",
+              "description": "急救方法",
+              "example": "烫伤了怎么处理？"
+            },
+            {
+              "task_code": "5.2.5",
+              "name_zh": "健康科普",
+              "description": "健康知识普及",
+              "example": "怎样预防感冒？"
+            },
+            {
+              "task_code": "5.2.6",
+              "name_zh": "藏医知识",
+              "description": "藏医学知识",
+              "example": "藏医如何看待这个症状？"
+            },
+            {
+              "task_code": "5.2.7",
+              "name_zh": "藏药介绍",
+              "description": "介绍藏药",
+              "example": "这种藏药有什么功效？"
+            },
+            {
+              "task_code": "5.2.8",
+              "name_zh": "养生保健",
+              "description": "养生方法",
+              "example": "藏医养生有什么方法？"
+            },
+            {
+              "task_code": "5.2.9",
+              "name_zh": "心理健康",
+              "description": "心理健康问答",
+              "example": "怎样缓解焦虑？"
+            },
+            {
+              "task_code": "5.2.10",
+              "name_zh": "营养饮食",
+              "description": "营养饮食建议",
+              "example": "高原饮食注意什么？"
+            },
+            {
+              "task_code": "5.2.11",
+              "name_zh": "健康误区",
+              "description": "澄清健康误区",
+              "example": "这个说法正确吗？"
+            },
+            {
+              "task_code": "5.2.12",
+              "name_zh": "医疗指南",
+              "description": "就医指导",
+              "example": "这种情况需要看医生吗？"
+            }
+          ]
+        },
+        {
+          "code": "5.3",
+          "name_zh": "教育辅导",
+          "name_en": "Education & Tutoring",
+          "l3_tasks": [
+            {
+              "task_code": "5.3.1",
+              "name_zh": "作业辅导",
+              "description": "辅导作业",
+              "example": "帮我解答这道题"
+            },
+            {
+              "task_code": "5.3.2",
+              "name_zh": "概念讲解",
+              "description": "讲解学科概念",
+              "example": "解释这个数学概念"
+            },
+            {
+              "task_code": "5.3.3",
+              "name_zh": "例题讲解",
+              "description": "讲解例题",
+              "example": "这道题怎么做？"
+            },
+            {
+              "task_code": "5.3.4",
+              "name_zh": "学习计划",
+              "description": "制定学习计划",
+              "example": "帮我制定复习计划"
+            },
+            {
+              "task_code": "5.3.5",
+              "name_zh": "学习方法",
+              "description": "学习方法指导",
+              "example": "怎样提高记忆力？"
+            },
+            {
+              "task_code": "5.3.6",
+              "name_zh": "藏文教学",
+              "description": "藏文语言教学",
+              "example": "这个藏文字母怎么写？"
+            },
+            {
+              "task_code": "5.3.7",
+              "name_zh": "汉语教学",
+              "description": "汉语学习辅导",
+              "example": "这个汉字怎么读？"
+            },
+            {
+              "task_code": "5.3.8",
+              "name_zh": "英语教学",
+              "description": "英语学习辅导",
+              "example": "这个单词什么意思？"
+            },
+            {
+              "task_code": "5.3.9",
+              "name_zh": "考试辅导",
+              "description": "考试准备指导",
+              "example": "怎样准备这个考试？"
+            },
+            {
+              "task_code": "5.3.10",
+              "name_zh": "论文指导",
+              "description": "论文写作指导",
+              "example": "怎样写论文摘要？"
+            },
+            {
+              "task_code": "5.3.11",
+              "name_zh": "错题分析",
+              "description": "分析错误原因",
+              "example": "我错在哪里？"
+            },
+            {
+              "task_code": "5.3.12",
+              "name_zh": "知识点总结",
+              "description": "总结知识点",
+              "example": "总结这一章的要点"
+            },
+            {
+              "task_code": "5.3.13",
+              "name_zh": "出题",
+              "description": "生成练习题",
+              "example": "出几道练习题"
+            },
+            {
+              "task_code": "5.3.14",
+              "name_zh": "儿童教育",
+              "description": "儿童学习内容",
+              "example": "教孩子认识颜色"
+            }
+          ]
+        },
+        {
+          "code": "5.4",
+          "name_zh": "法律行政",
+          "name_en": "Legal & Administrative",
+          "l3_tasks": [
+            {
+              "task_code": "5.4.1",
+              "name_zh": "法律咨询",
+              "description": "法律问题解答",
+              "example": "这种情况合法吗？"
+            },
+            {
+              "task_code": "5.4.2",
+              "name_zh": "政策解读",
+              "description": "解读政策法规",
+              "example": "这个政策是什么意思？"
+            },
+            {
+              "task_code": "5.4.3",
+              "name_zh": "权益说明",
+              "description": "说明公民权益",
+              "example": "我有什么权利？"
+            },
+            {
+              "task_code": "5.4.4",
+              "name_zh": "流程指导",
+              "description": "办事流程指导",
+              "example": "办理X需要什么材料？"
+            },
+            {
+              "task_code": "5.4.5",
+              "name_zh": "文书撰写",
+              "description": "法律文书撰写",
+              "example": "怎样写一份申诉书？"
+            },
+            {
+              "task_code": "5.4.6",
+              "name_zh": "合同说明",
+              "description": "解释合同条款",
+              "example": "这个条款是什么意思？"
+            },
+            {
+              "task_code": "5.4.7",
+              "name_zh": "纠纷调解",
+              "description": "纠纷处理建议",
+              "example": "这种纠纷怎么解决？"
+            },
+            {
+              "task_code": "5.4.8",
+              "name_zh": "行政事务",
+              "description": "行政事务咨询",
+              "example": "怎样申请X证件？"
+            },
+            {
+              "task_code": "5.4.9",
+              "name_zh": "少数民族政策",
+              "description": "相关政策解读",
+              "example": "少数民族有什么优惠政策？"
+            },
+            {
+              "task_code": "5.4.10",
+              "name_zh": "双语政务",
+              "description": "双语政务服务",
+              "example": "这份文件的藏文版"
+            }
+          ]
+        },
+        {
+          "code": "5.5",
+          "name_zh": "商业财经",
+          "name_en": "Business & Finance",
+          "l3_tasks": [
+            {
+              "task_code": "5.5.1",
+              "name_zh": "财务知识",
+              "description": "财务基础知识",
+              "example": "什么是资产负债表？"
+            },
+            {
+              "task_code": "5.5.2",
+              "name_zh": "投资理财",
+              "description": "理财知识问答",
+              "example": "怎样选择理财产品？"
+            },
+            {
+              "task_code": "5.5.3",
+              "name_zh": "创业指导",
+              "description": "创业相关问答",
+              "example": "创业需要注意什么？"
+            },
+            {
+              "task_code": "5.5.4",
+              "name_zh": "商业计划",
+              "description": "商业计划撰写",
+              "example": "帮我写商业计划书"
+            },
+            {
+              "task_code": "5.5.5",
+              "name_zh": "市场分析",
+              "description": "市场分析问答",
+              "example": "这个市场的前景如何？"
+            },
+            {
+              "task_code": "5.5.6",
+              "name_zh": "税务知识",
+              "description": "税务相关问答",
+              "example": "这种收入要交税吗？"
+            },
+            {
+              "task_code": "5.5.7",
+              "name_zh": "电商运营",
+              "description": "电商相关问答",
+              "example": "怎样在网上卖东西？"
+            },
+            {
+              "task_code": "5.5.8",
+              "name_zh": "藏区特产",
+              "description": "藏区特产介绍",
+              "example": "介绍一下藏区特产"
+            }
+          ]
+        },
+        {
+          "code": "5.6",
+          "name_zh": "技术编程",
+          "name_en": "Technology & Programming",
+          "l3_tasks": [
+            {
+              "task_code": "5.6.1",
+              "name_zh": "代码生成",
+              "description": "生成代码",
+              "example": "写一个排序函数"
+            },
+            {
+              "task_code": "5.6.2",
+              "name_zh": "代码解释",
+              "description": "解释代码",
+              "example": "这段代码做什么？"
+            },
+            {
+              "task_code": "5.6.3",
+              "name_zh": "代码调试",
+              "description": "调试代码",
+              "example": "帮我找出这段代码的错误"
+            },
+            {
+              "task_code": "5.6.4",
+              "name_zh": "代码优化",
+              "description": "优化代码",
+              "example": "怎样优化这段代码？"
+            },
+            {
+              "task_code": "5.6.5",
+              "name_zh": "技术问答",
+              "description": "技术问题解答",
+              "example": "Python怎样读取文件？"
+            },
+            {
+              "task_code": "5.6.6",
+              "name_zh": "工具使用",
+              "description": "软件工具使用",
+              "example": "Excel怎么做透视表？"
+            },
+            {
+              "task_code": "5.6.7",
+              "name_zh": "技术文档",
+              "description": "技术文档撰写",
+              "example": "写一份API文档"
+            },
+            {
+              "task_code": "5.6.8",
+              "name_zh": "数据处理",
+              "description": "数据处理指导",
+              "example": "怎样清洗这些数据？"
+            },
+            {
+              "task_code": "5.6.9",
+              "name_zh": "藏文处理",
+              "description": "藏文技术处理",
+              "example": "Python怎样处理藏文？"
+            }
+          ]
+        },
+        {
+          "code": "5.7",
+          "name_zh": "文化艺术",
+          "name_en": "Culture & Arts",
+          "l3_tasks": [
+            {
+              "task_code": "5.7.1",
+              "name_zh": "藏族文化",
+              "description": "藏族文化介绍",
+              "example": "介绍藏族的传统节日"
+            },
+            {
+              "task_code": "5.7.2",
+              "name_zh": "藏族艺术",
+              "description": "藏族艺术介绍",
+              "example": "唐卡是什么？"
+            },
+            {
+              "task_code": "5.7.3",
+              "name_zh": "藏族音乐",
+              "description": "藏族音乐介绍",
+              "example": "介绍藏族传统音乐"
+            },
+            {
+              "task_code": "5.7.4",
+              "name_zh": "藏族舞蹈",
+              "description": "藏族舞蹈介绍",
+              "example": "介绍锅庄舞"
+            },
+            {
+              "task_code": "5.7.5",
+              "name_zh": "藏族服饰",
+              "description": "藏族服饰介绍",
+              "example": "介绍藏族传统服饰"
+            },
+            {
+              "task_code": "5.7.6",
+              "name_zh": "藏族建筑",
+              "description": "藏族建筑介绍",
+              "example": "介绍藏族建筑特点"
+            },
+            {
+              "task_code": "5.7.7",
+              "name_zh": "藏族饮食",
+              "description": "藏族饮食介绍",
+              "example": "介绍藏族传统食物"
+            },
+            {
+              "task_code": "5.7.8",
+              "name_zh": "藏族历史",
+              "description": "藏族历史介绍",
+              "example": "介绍吐蕃王朝历史"
+            },
+            {
+              "task_code": "5.7.9",
+              "name_zh": "民间故事",
+              "description": "藏族民间故事",
+              "example": "讲一个藏族民间故事"
+            },
+            {
+              "task_code": "5.7.10",
+              "name_zh": "格萨尔史诗",
+              "description": "格萨尔王相关",
+              "example": "介绍格萨尔王的故事"
+            },
+            {
+              "task_code": "5.7.11",
+              "name_zh": "藏历藏历法",
+              "description": "藏历相关知识",
+              "example": "今天藏历是什么日子？"
+            },
+            {
+              "task_code": "5.7.12",
+              "name_zh": "传统手工艺",
+              "description": "传统手工艺介绍",
+              "example": "介绍藏香的制作"
+            }
+          ]
+        },
+        {
+          "code": "5.8",
+          "name_zh": "生活服务",
+          "name_en": "Daily Life Services",
+          "l3_tasks": [
+            {
+              "task_code": "5.8.1",
+              "name_zh": "天气查询",
+              "description": "天气相关问答",
+              "example": "拉萨今天天气怎么样？"
+            },
+            {
+              "task_code": "5.8.2",
+              "name_zh": "路线规划",
+              "description": "出行路线规划",
+              "example": "从A到B怎么走？"
+            },
+            {
+              "task_code": "5.8.3",
+              "name_zh": "餐饮推荐",
+              "description": "餐厅/美食推荐",
+              "example": "附近有什么好吃的？"
+            },
+            {
+              "task_code": "5.8.4",
+              "name_zh": "住宿推荐",
+              "description": "住宿推荐",
+              "example": "推荐一个酒店"
+            },
+            {
+              "task_code": "5.8.5",
+              "name_zh": "景点介绍",
+              "description": "旅游景点介绍",
+              "example": "布达拉宫怎么样？"
+            },
+            {
+              "task_code": "5.8.6",
+              "name_zh": "购物推荐",
+              "description": "购物建议",
+              "example": "去哪里买藏饰？"
+            },
+            {
+              "task_code": "5.8.7",
+              "name_zh": "生活技巧",
+              "description": "日常生活技巧",
+              "example": "怎样去除污渍？"
+            },
+            {
+              "task_code": "5.8.8",
+              "name_zh": "高原生活",
+              "description": "高原生活知识",
+              "example": "怎样适应高原环境？"
+            },
+            {
+              "task_code": "5.8.9",
+              "name_zh": "节日习俗",
+              "description": "节日习俗说明",
+              "example": "藏历新年怎么过？"
+            },
+            {
+              "task_code": "5.8.10",
+              "name_zh": "礼仪习俗",
+              "description": "礼仪习俗说明",
+              "example": "拜访寺院要注意什么？"
+            }
+          ]
+        },
+        {
+          "code": "5.9",
+          "name_zh": "农牧业",
+          "name_en": "Agriculture & Pastoralism",
+          "l3_tasks": [
+            {
+              "task_code": "5.9.1",
+              "name_zh": "畜牧养殖",
+              "description": "牲畜饲养知识",
+              "example": "牦牛在冬季应如何防寒保暖？"
+            },
+            {
+              "task_code": "5.9.2",
+              "name_zh": "草场管理",
+              "description": "草场保护与利用",
+              "example": "如何防止高原草场退化？"
+            },
+            {
+              "task_code": "5.9.3",
+              "name_zh": "农业种植",
+              "description": "高原农作物种植",
+              "example": "青稞种植有什么技巧和注意事项？"
+            },
+            {
+              "task_code": "5.9.4",
+              "name_zh": "畜产品加工",
+              "description": "畜产品加工知识",
+              "example": "传统酥油是怎么制作的？"
+            },
+            {
+              "task_code": "5.9.5",
+              "name_zh": "动物疾病防治",
+              "description": "牲畜常见病防治",
+              "example": "牦牛常见的疾病有哪些？如何预防？"
+            },
+            {
+              "task_code": "5.9.6",
+              "name_zh": "传统畜牧知识",
+              "description": "藏族传统畜牧经验",
+              "example": "传统的转场放牧有什么讲究？"
+            },
+            {
+              "task_code": "5.9.7",
+              "name_zh": "农牧业政策",
+              "description": "相关政策问答",
+              "example": "草原生态保护补奖政策的内容是什么？"
+            }
+          ]
+        },
+        {
+          "code": "5.10",
+          "name_zh": "生态与环保",
+          "name_en": "Ecology & Environmental Protection",
+          "l3_tasks": [
+            {
+              "task_code": "5.10.1",
+              "name_zh": "青藏高原生态",
+              "description": "高原生态系统知识",
+              "example": "青藏高原的生态系统有什么特点？"
+            },
+            {
+              "task_code": "5.10.2",
+              "name_zh": "野生动植物保护",
+              "description": "保护动植物知识",
+              "example": "藏羚羊的保护现状如何？"
+            },
+            {
+              "task_code": "5.10.3",
+              "name_zh": "气候变化",
+              "description": "气候变化对高原的影响",
+              "example": "全球变暖对青藏高原冰川有什么影响？"
+            },
+            {
+              "task_code": "5.10.4",
+              "name_zh": "水资源保护",
+              "description": "水源地保护知识",
+              "example": "为什么青藏高原被称为'亚洲水塔'？"
+            },
+            {
+              "task_code": "5.10.5",
+              "name_zh": "环保知识科普",
+              "description": "环保常识普及",
+              "example": "如何减少高原草场上的塑料污染？"
+            },
+            {
+              "task_code": "5.10.6",
+              "name_zh": "传统生态智慧",
+              "description": "藏族传统自然观",
+              "example": "藏族传统文化中如何看待人与自然的关系？"
+            }
+          ]
+        },
+        {
+          "code": "5.11",
+          "name_zh": "天文历算",
+          "name_en": "Tibetan Astronomy & Calendar",
+          "l3_tasks": [
+            {
+              "task_code": "5.11.1",
+              "name_zh": "藏历推算",
+              "description": "藏历日期推算",
+              "example": "今年藏历新年是公历的哪一天？"
+            },
+            {
+              "task_code": "5.11.2",
+              "name_zh": "节气与农事",
+              "description": "节气对应的农牧安排",
+              "example": "藏历中什么时候适合播种青稞？"
+            },
+            {
+              "task_code": "5.11.3",
+              "name_zh": "天文知识",
+              "description": "藏族传统天文知识",
+              "example": "藏族传统天文学如何划分星座？"
+            },
+            {
+              "task_code": "5.11.4",
+              "name_zh": "历算文化",
+              "description": "历算文化传统",
+              "example": "藏族历算学的起源和发展历程是怎样的？"
+            },
+            {
+              "task_code": "5.11.5",
+              "name_zh": "择日文化",
+              "description": "传统吉日选择知识",
+              "example": "藏族传统中如何选择婚嫁吉日？"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "6",
+      "name_zh": "安全与对齐",
+      "name_en": "Safety & Alignment",
+      "l2_task_types": [
+        {
+          "code": "6.1",
+          "name_zh": "拒绝与边界",
+          "name_en": "Refusal & Boundaries",
+          "l3_tasks": [
+            {
+              "task_code": "6.1.1",
+              "name_zh": "有害请求拒绝",
+              "description": "拒绝有害请求",
+              "example": "拒绝暴力、违法等请求"
+            },
+            {
+              "task_code": "6.1.2",
+              "name_zh": "非法活动拒绝",
+              "description": "拒绝非法请求",
+              "example": "拒绝提供违法信息"
+            },
+            {
+              "task_code": "6.1.3",
+              "name_zh": "隐私保护",
+              "description": "拒绝泄露隐私",
+              "example": "不提供个人信息"
+            },
+            {
+              "task_code": "6.1.4",
+              "name_zh": "能力边界说明",
+              "description": "说明能力限制",
+              "example": "我无法访问互联网"
+            },
+            {
+              "task_code": "6.1.5",
+              "name_zh": "专业边界",
+              "description": "建议咨询专业人士",
+              "example": "请咨询医生"
+            },
+            {
+              "task_code": "6.1.6",
+              "name_zh": "委婉拒绝",
+              "description": "礼貌地拒绝不当请求",
+              "example": "委婉拒绝并解释原因"
+            },
+            {
+              "task_code": "6.1.7",
+              "name_zh": "替代建议",
+              "description": "拒绝后提供替代方案",
+              "example": "我不能做X，但可以帮你做Y"
+            },
+            {
+              "task_code": "6.1.8",
+              "name_zh": "争议话题处理",
+              "description": "处理敏感争议话题",
+              "example": "保持中立客观"
+            }
+          ]
+        },
+        {
+          "code": "6.2",
+          "name_zh": "诚实与准确",
+          "name_en": "Honesty & Accuracy",
+          "l3_tasks": [
+            {
+              "task_code": "6.2.1",
+              "name_zh": "不确定性表达",
+              "description": "表达不确定性",
+              "example": "我不确定，但可能是..."
+            },
+            {
+              "task_code": "6.2.2",
+              "name_zh": "知识边界承认",
+              "description": "承认知识不足",
+              "example": "我不知道这个问题的答案"
+            },
+            {
+              "task_code": "6.2.3",
+              "name_zh": "信息来源说明",
+              "description": "说明信息来源",
+              "example": "根据我的训练数据..."
+            },
+            {
+              "task_code": "6.2.4",
+              "name_zh": "事实与观点区分",
+              "description": "区分事实和观点",
+              "example": "这是事实...这是我的看法..."
+            },
+            {
+              "task_code": "6.2.5",
+              "name_zh": "错误纠正",
+              "description": "纠正自己的错误",
+              "example": "抱歉我之前说错了"
+            },
+            {
+              "task_code": "6.2.6",
+              "name_zh": "信息核实建议",
+              "description": "建议核实信息",
+              "example": "建议您再核实一下"
+            },
+            {
+              "task_code": "6.2.7",
+              "name_zh": "时效性说明",
+              "description": "说明信息时效",
+              "example": "我的信息截止到..."
+            },
+            {
+              "task_code": "6.2.8",
+              "name_zh": "多种观点呈现",
+              "description": "呈现不同观点",
+              "example": "对此有不同看法..."
+            }
+          ]
+        },
+        {
+          "code": "6.3",
+          "name_zh": "价值观与尊重",
+          "name_en": "Values & Respect",
+          "l3_tasks": [
+            {
+              "task_code": "6.3.1",
+              "name_zh": "文化尊重",
+              "description": "尊重藏族文化",
+              "example": "对宗教文化表示尊重"
+            },
+            {
+              "task_code": "6.3.2",
+              "name_zh": "宗教尊重",
+              "description": "尊重宗教信仰",
+              "example": "对佛教信仰表示尊重"
+            },
+            {
+              "task_code": "6.3.3",
+              "name_zh": "多元包容",
+              "description": "包容不同观点",
+              "example": "尊重多元文化"
+            },
+            {
+              "task_code": "6.3.4",
+              "name_zh": "反歧视",
+              "description": "反对歧视言论",
+              "example": "不使用歧视性语言"
+            },
+            {
+              "task_code": "6.3.5",
+              "name_zh": "积极引导",
+              "description": "积极正面引导",
+              "example": "传递正能量"
+            },
+            {
+              "task_code": "6.3.6",
+              "name_zh": "平等对待",
+              "description": "平等对待所有人",
+              "example": "不偏见地回答"
+            },
+            {
+              "task_code": "6.3.7",
+              "name_zh": "敏感话题处理",
+              "description": "谨慎处理敏感话题",
+              "example": "对敏感问题谨慎回应"
+            },
+            {
+              "task_code": "6.3.8",
+              "name_zh": "民族团结",
+              "description": "促进民族团结",
+              "example": "促进各民族友好"
+            }
+          ]
+        },
+        {
+          "code": "6.4",
+          "name_zh": "对话质量",
+          "name_en": "Dialogue Quality",
+          "l3_tasks": [
+            {
+              "task_code": "6.4.1",
+              "name_zh": "澄清请求",
+              "description": "请求澄清不清楚的问题",
+              "example": "您能说得更具体一些吗？"
+            },
+            {
+              "task_code": "6.4.2",
+              "name_zh": "接受反馈",
+              "description": "接受用户反馈",
+              "example": "感谢您的反馈"
+            },
+            {
+              "task_code": "6.4.3",
+              "name_zh": "承认错误",
+              "description": "承认并纠正错误",
+              "example": "您说得对，我之前理解错了"
+            },
+            {
+              "task_code": "6.4.4",
+              "name_zh": "跟进确认",
+              "description": "确认是否解决问题",
+              "example": "这样回答有帮助吗？"
+            },
+            {
+              "task_code": "6.4.5",
+              "name_zh": "多轮纠错",
+              "description": "在对话中改进",
+              "example": "根据反馈调整回答"
+            },
+            {
+              "task_code": "6.4.6",
+              "name_zh": "适度回复",
+              "description": "回复长度适当",
+              "example": "不过于冗长或简略"
+            },
+            {
+              "task_code": "6.4.7",
+              "name_zh": "格式适配",
+              "description": "根据需求调整格式",
+              "example": "按要求调整输出格式"
+            },
+            {
+              "task_code": "6.4.8",
+              "name_zh": "语气适配",
+              "description": "根据场景调整语气",
+              "example": "正式/非正式语气切换"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "l1_count": 6,
+    "l2_count": 37,
+    "l3_count": 366
+  }
+}

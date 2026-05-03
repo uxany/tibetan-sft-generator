@@ -1,0 +1,188 @@
+{
+  "default": {
+    "cleaner": "strict",
+    "min_length": 50,
+    "instruction_min_length": 10,
+    "tibetan_ratio": 0.6,
+    "instruction_tibetan_ratio": 0.5,
+    "english_policy": "forbid",
+    "script_policy": "tibetan",
+    "max_tokens": 4096,
+    "temperature": 0.9,
+    "quality_score_mode": "tibetan",
+    "domain_tags": [],
+    "requires_cultural_knowledge": false,
+    "prompt_notes": [
+      "instruction 应该像真实用户输入。",
+      "output 应该准确完成 instruction。",
+      "内容应自然、具体、完整。",
+      "不要输出中文、英文、Markdown 或代码块。"
+    ]
+  },
+
+  "prefix_rules": {
+    "3.4": {
+      "cleaner": "light",
+      "min_length": 4,
+      "instruction_min_length": 4,
+      "tibetan_ratio": 0.15,
+      "instruction_tibetan_ratio": 0.15,
+      "english_policy": "allow_wylie",
+      "script_policy": "tibetan_or_wylie",
+      "max_tokens": 1024,
+      "temperature": 0.4,
+      "quality_score_mode": "tibetan_or_wylie",
+      "domain_tags": ["transliteration", "wylie", "script_conversion"],
+      "requires_cultural_knowledge": false,
+      "prompt_notes": [
+        "这个任务重点训练藏文转写、Wylie/Latin 转写、转写还原或转写纠错。",
+        "如果用户要求藏文转 Wylie/Latin，output 可以使用拉丁字母。",
+        "如果用户要求 Wylie/Latin 还原藏文，output 必须使用藏文字母。",
+        "Wylie/Latin 是本任务的合法内容，不要为了纯藏文而改写。",
+        "instruction 和 output 都应该短而准确，不要写成长文。",
+        "不要输出中文解释、中文标签、Markdown 或代码块。"
+      ]
+    },
+
+    "5.4": {
+      "cleaner": "light",
+      "min_length": 30,
+      "instruction_min_length": 8,
+      "tibetan_ratio": 0.45,
+      "instruction_tibetan_ratio": 0.35,
+      "english_policy": "allow_short_acronyms",
+      "script_policy": "tibetan",
+      "max_tokens": 2048,
+      "temperature": 0.7,
+      "quality_score_mode": "legal_admin",
+      "domain_tags": ["legal", "administrative", "public_service"],
+      "requires_cultural_knowledge": false,
+      "prompt_notes": [
+        "这个任务重点训练法律行政藏文表达。",
+        "output 应使用正式、清楚、克制的藏文法律或行政文体。",
+        "可以包含数字、日期、条款编号、表格编号、机构编号。",
+        "不要编造具体法律条文、法院结论或政府政策。",
+        "不确定时应说明需以正式文件、当地机关或专业人士意见为准。",
+        "不要给确定性法律意见，不要承诺办理结果。",
+        "不要输出中文法律标签，例如“第X条”“说明”“注意”。"
+      ]
+    },
+
+    "5.7": {
+      "cleaner": "light",
+      "min_length": 22,
+      "instruction_min_length": 8,
+      "tibetan_ratio": 0.42,
+      "instruction_tibetan_ratio": 0.35,
+      "english_policy": "forbid",
+      "script_policy": "tibetan",
+      "max_tokens": 2048,
+      "temperature": 0.9,
+      "quality_score_mode": "tibetan",
+      "domain_tags": ["culture", "art", "literature"],
+      "requires_cultural_knowledge": true,
+      "prompt_notes": [
+        "这个任务重点训练文化艺术藏文表达。",
+        "可以生成民间故事、节庆说明、艺术评论、短诗、歌谣、祝词、作品简介或创作建议。",
+        "output 可以较短，但要自然、有文化语感。",
+        "不要为了凑长度而重复句子。",
+        "可以保留藏文作品名、人名、地名、传统术语。",
+        "避免把文化内容写成空泛口号。",
+        "不要输出中文标签、英文标签、Markdown 或代码块。"
+      ]
+    },
+
+    "6.1": {
+      "cleaner": "light",
+      "min_length": 18,
+      "instruction_min_length": 8,
+      "tibetan_ratio": 0.42,
+      "instruction_tibetan_ratio": 0.35,
+      "english_policy": "forbid",
+      "script_policy": "tibetan",
+      "max_tokens": 1536,
+      "temperature": 0.7,
+      "quality_score_mode": "tibetan",
+      "domain_tags": ["safety", "refusal", "boundaries"],
+      "requires_cultural_knowledge": false,
+      "prompt_notes": [
+        "这个任务重点训练拒绝与边界。",
+        "output 可以较短，但必须礼貌、清楚、坚定。",
+        "拒绝后应尽量提供安全替代建议。",
+        "不要为了凑长度而写空泛长文。",
+        "不要输出中文标签、英文标签、Markdown 或代码块。"
+      ]
+    },
+
+    "6.2": {
+      "cleaner": "light",
+      "min_length": 12,
+      "instruction_min_length": 8,
+      "tibetan_ratio": 0.4,
+      "instruction_tibetan_ratio": 0.35,
+      "english_policy": "forbid",
+      "script_policy": "tibetan",
+      "max_tokens": 2048,
+      "temperature": 0.2,
+      "quality_score_mode": "tibetan",
+      "domain_tags": ["honesty", "accuracy", "uncertainty"],
+      "requires_cultural_knowledge": false,
+      "prompt_notes": [
+        "这个任务重点训练诚实与准确。",
+        "instruction 必须简短，最多一句话。",
+        "output 必须简短，建议 1 到 3 句。",
+        "output 可以很短，只要自然、准确、不过度编造。",
+        "鼓励承认不知道、说明不确定性、要求更多上下文。",
+        "不要为了凑长度而添加无依据内容。",
+        "不要生成长篇背景故事。",
+        "不要生成复杂商业预测、历史考证、法律结论或医学诊断。",
+        "不要输出中文标签、英文标签、Markdown 或代码块。"
+      ]
+    },
+
+    "6.3": {
+      "cleaner": "light",
+      "min_length": 20,
+      "instruction_min_length": 8,
+      "tibetan_ratio": 0.42,
+      "instruction_tibetan_ratio": 0.35,
+      "english_policy": "forbid",
+      "script_policy": "tibetan",
+      "max_tokens": 1536,
+      "temperature": 0.7,
+      "quality_score_mode": "tibetan",
+      "domain_tags": ["respect", "values", "inclusion"],
+      "requires_cultural_knowledge": false,
+      "prompt_notes": [
+        "这个任务重点训练价值观与尊重。",
+        "output 应礼貌、尊重、避免刻板印象。",
+        "可以较短，但必须清楚、自然、有帮助。",
+        "不要输出中文标签、英文标签、Markdown 或代码块。"
+      ]
+    },
+
+    "6.4": {
+      "cleaner": "light",
+      "min_length": 16,
+      "instruction_min_length": 8,
+      "tibetan_ratio": 0.4,
+      "instruction_tibetan_ratio": 0.35,
+      "english_policy": "forbid",
+      "script_policy": "tibetan",
+      "max_tokens": 2048,
+      "temperature": 0.3,
+      "quality_score_mode": "tibetan",
+      "domain_tags": ["dialogue", "helpfulness", "clarity"],
+      "requires_cultural_knowledge": false,
+      "prompt_notes": [
+        "这个任务重点训练对话质量。",
+        "instruction 必须像真实用户输入，最多一句话。",
+        "output 应该像真实助手回复：礼貌、清晰、直接、有帮助。",
+        "output 建议 1 到 4 句，不要写长篇文章。",
+        "可以是简短澄清、自然追问、改进后的回答或更好的对话回应。",
+        "不要生成长篇故事、复杂背景或多段说明。",
+        "不要输出中文标签、英文标签、Markdown 或代码块。"
+      ]
+    }
+  }
+}
