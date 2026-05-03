@@ -123,19 +123,22 @@
       "english_policy": "forbid",
       "script_policy": "tibetan",
       "max_tokens": 2048,
-      "temperature": 0.2,
+      "temperature": 0.45,
       "quality_score_mode": "tibetan",
-      "domain_tags": ["honesty", "accuracy", "uncertainty"],
+      "domain_tags": [
+        "honesty",
+        "accuracy",
+        "uncertainty"
+      ],
       "requires_cultural_knowledge": false,
       "prompt_notes": [
         "这个任务重点训练诚实与准确。",
         "instruction 必须简短，最多一句话。",
         "output 必须简短，建议 1 到 3 句。",
-        "output 可以很短，只要自然、准确、不过度编造。",
-        "鼓励承认不知道、说明不确定性、要求更多上下文。",
+        "output 必须包含对 instruction 中具体主题的回应，避免泛泛地说不知道。",
+        "如果不确定，应说明哪一部分不确定，并给出可验证的方法或需要补充的信息。",
         "不要为了凑长度而添加无依据内容。",
         "不要生成长篇背景故事。",
-        "不要生成复杂商业预测、历史考证、法律结论或医学诊断。",
         "不要输出中文标签、英文标签、Markdown 或代码块。"
       ]
     },

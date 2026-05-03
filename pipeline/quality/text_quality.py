@@ -9,8 +9,11 @@ CHINESE_RE = re.compile(r"[\u4e00-\u9fff]")
 ENGLISH_WORD_RE = re.compile(r"\b[a-zA-Z]{3,}\b")
 LONG_ENGLISH_WORD_RE = re.compile(r"\b[a-zA-Z]{5,}\b")
 WYLIE_TOKEN_RE = re.compile(r"\b[a-zA-Z][a-zA-Z'\-\.]{1,}\b")
-WYLIE_CHAR_RE = re.compile(r"[A-Za-z'\-\. ]")
-NEUTRAL_SYMBOL_RE = re.compile(r"[0-9０-９༠-༩\s\.,;:!?()\[\]{}<>《》“”‘’\"'།༎༏༐༑་\-_/]+")
+WYLIE_CHAR_RE = re.compile(r"[A-Za-z'\-\.]")
+
+NEUTRAL_SYMBOL_RE = re.compile(
+    r"[0-9０-９༠-༩\s\.,;:!?()\[\]{}<>《》“”‘’\"'།༎༏༐༑་\-_/]+"
+)
 
 
 def tibetan_ratio_of(text: str) -> float:
@@ -83,36 +86,40 @@ def clean_text_strict(text: str) -> str:
     result = " ".join(cleaned)
     result = ENGLISH_WORD_RE.sub("", result)
     result = re.sub(r" +", " ", result).strip()
-
     return result
 
 
 def clean_text_light(text: str) -> str:
     """
-    Light cleaner for short, structured, legal/admin, culture/art, and transliteration tasks.
+    Light cleaner for short, structured, legal/admin, culture/art,
+    and transliteration tasks.
     """
     if text is None:
         return ""
 
     text = str(text).strip()
-
     text = re.sub(r"^```(?:json|JSON)?\s*", "", text).strip()
     text = re.sub(r"\s*```$", "", text).strip()
-
-    text = re.sub(r"^\s*(answer|output|response|assistant)\s*[:：]\s*", "", text, flags=re.IGNORECASE)
-    text = re.sub(r"^\s*(instruction|user)\s*[:：]\s*", "", text, flags=re.IGNORECASE)
-
+    text = re.sub(
+        r"^\s*(answer|output|response|assistant)\s*[:：]\s*",
+        "",
+        text,
+        flags=re.IGNORECASE,
+    )
+    text = re.sub(
+        r"^\s*(instruction|user)\s*[:：]\s*",
+        "",
+        text,
+        flags=re.IGNORECASE,
+    )
     text = re.sub(r"\s+", " ", text).strip()
-
     return text
 
 
 def clean_text_for_rule(text: str, rule: dict) -> str:
     cleaner = rule.get("cleaner", "strict")
-
     if cleaner == "light":
         return clean_text_light(text)
-
     return clean_text_strict(text)
 
 
@@ -133,7 +140,8 @@ def quality_reason(
     field_name: str = "output",
 ) -> str | None:
     """
-    Return None if text passes quality checks. Otherwise return reason string.
+    Return None if text passes quality checks.
+    Otherwise return reason string.
     """
     text = text or ""
 
@@ -169,25 +177,20 @@ def quality_reason(
     if english_policy == "forbid":
         if ENGLISH_WORD_RE.search(text):
             return "english_contamination"
-
     elif english_policy == "allow_short_acronyms":
         tokens = LONG_ENGLISH_WORD_RE.findall(text)
         if len(tokens) >= 3:
             return f"english_contamination:{','.join(tokens[:5])}"
-
     elif english_policy in {"allow_wylie", "allow"}:
         pass
-
     else:
         return f"unknown_english_policy:{english_policy}"
 
     if score_mode == "legal_admin":
         stripped = NEUTRAL_SYMBOL_RE.sub("", text)
         adjusted_ratio = len(TIBETAN_RE.findall(stripped)) / max(len(stripped), 1)
-
         if adjusted_ratio < tibetan_ratio:
             return f"low_tibetan_ratio_adjusted:{adjusted_ratio:.3f}<{tibetan_ratio}"
-
         return None
 
     if tib_ratio < tibetan_ratio:
@@ -196,7 +199,11 @@ def quality_reason(
     return None
 
 
-def estimate_quality_score(text: str, rule: dict, field_name: str = "output") -> float:
+def estimate_quality_score(
+    text: str,
+    rule: dict,
+    field_name: str = "output",
+) -> float:
     text = text or ""
 
     min_length = int(rule.get("min_length", 50))
@@ -229,36 +236,170 @@ def estimate_quality_score(text: str, rule: dict, field_name: str = "output") ->
     return round(length_score * 0.35 + purity_score * 0.65, 4)
 
 
-def parse_json_response(text: str) -> dict[str, Any] | None:
+def _normalize_jsonish(text: str) -> str:
+    """
+    Normalize common model output mistakes before JSON parsing.
+    """
     text = (text or "").strip()
+    text = text.strip("\ufeff")
+
+    # Remove one surrounding markdown fence if present.
+    text = re.sub(r"^```(?:json|JSON)?\s*", "", text).strip()
+    text = re.sub(r"\s*```$", "", text).strip()
+
+    # Normalize common full-width punctuation / smart quotes.
+    text = (
+        text.replace("“", '"')
+        .replace("”", '"')
+        .replace("„", '"')
+        .replace("‟", '"')
+        .replace("＂", '"')
+        .replace("‘", "'")
+        .replace("’", "'")
+        .replace("：", ":")
+        .replace("，", ",")
+    )
+
+    # Remove trailing commas before object/array endings.
+    text = re.sub(r",\s*([}\]])", r"\1", text)
+
+    return text.strip()
+
+
+def _extract_balanced_json_objects(text: str) -> list[str]:
+    """
+    Extract balanced {...} blocks while respecting quoted strings.
+    This is much safer than a simple regex for nested or multiline JSON.
+    """
+    objects: list[str] = []
+
+    start = None
+    depth = 0
+    in_str = False
+    esc = False
+
+    for i, ch in enumerate(text):
+        if in_str:
+            if esc:
+                esc = False
+            elif ch == "\\":
+                esc = True
+            elif ch == '"':
+                in_str = False
+            continue
+
+        if ch == '"':
+            in_str = True
+        elif ch == "{":
+            if depth == 0:
+                start = i
+            depth += 1
+        elif ch == "}":
+            if depth > 0:
+                depth -= 1
+                if depth == 0 and start is not None:
+                    objects.append(text[start : i + 1])
+                    start = None
+
+    return objects
+
+
+def _coerce_pair(data: Any) -> dict[str, Any] | None:
+    """
+    Coerce common model variants to:
+        {"instruction": "...", "output": "..."}
+
+    Accepted variants:
+        [{"instruction": "...", "output": "..."}]
+        {"input": "...", "answer": "..."}
+        {"user": "...", "assistant": "..."}
+        {"prompt": "...", "response": "..."}
+    """
+    if isinstance(data, list) and data and isinstance(data[0], dict):
+        data = data[0]
+
+    if not isinstance(data, dict):
+        return None
+
+    key_map = {
+        "instruction": [
+            "instruction",
+            "input",
+            "prompt",
+            "user",
+            "question",
+            "query",
+            "human",
+        ],
+        "output": [
+            "output",
+            "answer",
+            "assistant",
+            "response",
+            "reply",
+            "completion",
+        ],
+    }
+
+    result: dict[str, Any] = {}
+
+    for target_key, candidates in key_map.items():
+        for key in candidates:
+            value = data.get(key)
+            if isinstance(value, str) and value.strip():
+                result[target_key] = value.strip()
+                break
+
+    if "instruction" in result and "output" in result:
+        return result
+
+    return None
+
+
+def parse_json_response(text: str) -> dict[str, Any] | None:
+    """
+    Robust parser for paired SFT JSON output.
+
+    It tries:
+    1. whole text as JSON
+    2. fenced JSON blocks
+    3. balanced {...} JSON objects inside surrounding text
+    4. key aliases such as input/answer, user/assistant, prompt/response
+    """
+    text = _normalize_jsonish(text)
 
     if not text:
         return None
 
-    try:
-        data = json.loads(text)
-        if isinstance(data, dict) and "instruction" in data and "output" in data:
-            return data
-    except json.JSONDecodeError:
-        pass
+    candidates: list[str] = [text]
 
-    fences = re.findall(r"```(?:json|JSON)?\s*\n?(.*?)```", text, re.DOTALL | re.IGNORECASE)
-    for fence in fences:
-        try:
-            data = json.loads(fence.strip())
-            if isinstance(data, dict) and "instruction" in data and "output" in data:
-                return data
-        except json.JSONDecodeError:
-            pass
+    fences = re.findall(
+        r"```(?:json|JSON)?\s*\n?(.*?)```",
+        text,
+        re.DOTALL | re.IGNORECASE,
+    )
+    candidates.extend(f.strip() for f in fences if f.strip())
 
-    match = re.search(r'\{[^{}]*"instruction"[^{}]*"output"[^{}]*\}', text, re.DOTALL)
-    if match:
+    candidates.extend(_extract_balanced_json_objects(text))
+
+    seen: set[str] = set()
+
+    for candidate in candidates:
+        candidate = _normalize_jsonish(candidate)
+
+        if not candidate or candidate in seen:
+            continue
+
+        seen.add(candidate)
+
         try:
-            data = json.loads(match.group())
-            if isinstance(data, dict) and "instruction" in data and "output" in data:
-                return data
+            data = json.loads(candidate)
         except json.JSONDecodeError:
-            pass
+            continue
+
+        pair = _coerce_pair(data)
+        if pair:
+            return pair
 
     return None
 

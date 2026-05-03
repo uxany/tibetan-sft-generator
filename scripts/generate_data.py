@@ -3,7 +3,6 @@
 Stage 2: Generate SFT training data for any L3 task using a prompt pool.
 
 This version keeps task-specific quality rules outside this script:
-
 - pipeline/config/task_quality_rules.json
 - pipeline/quality/task_rules.py
 - pipeline/quality/text_quality.py
@@ -48,10 +47,8 @@ DATA_DIR = Path("output/data")
 
 def build_prompt_notes(rule: dict) -> str:
     notes = rule.get("prompt_notes", [])
-
     if not notes:
         return ""
-
     return "\n".join(f"{idx + 1}. {note}" for idx, note in enumerate(notes))
 
 
@@ -90,7 +87,7 @@ def build_paired_prompt(
 ) -> str:
     notes = build_prompt_notes(rule)
 
-    return f"""请生成一条SFT训练数据。
+    return f"""你是SFT数据生成器。你只能输出JSON，不能输出自然语言说明。
 
 任务类型：{task_name}
 场景描述：{hint}
@@ -99,19 +96,22 @@ def build_paired_prompt(
 任务规则：
 {notes}
 
-生成要求：
-1. instruction 字段：用户输入
-2. output 字段：助手回复
-3. instruction 和 output 必须语义相关，output 必须直接回应 instruction
-4. 不要输出任何额外说明
-5. 不要输出 Markdown
-6. 不要输出代码块
+必须生成一个训练样本：
+- instruction：真实用户会说的一句藏文输入
+- output：助手对该 instruction 的藏文回复
+- instruction 和 output 必须语义相关
+- output 必须直接回应 instruction
+- instruction 和 output 都必须是藏文
+- 不要输出 Markdown
+- 不要输出代码块
+- 不要输出中文解释
+- 不要输出英文解释
+- 不要在 JSON 外输出任何字符
 
-你的输出必须是且仅是一个合法 JSON 对象：
-{{
-  "instruction": "<用户输入>",
-  "output": "<助手回复>"
-}}"""
+严格输出这个 JSON 结构：
+{{"instruction":"བོད་ཡིག་གི་སྤྱོད་མཁན་གྱི་ནང་འཇུག","output":"བོད་ཡིག་གི་ལན"}}
+
+现在只输出 JSON："""
 
 
 def load_pool(task_code: str) -> dict:
@@ -196,7 +196,12 @@ def build_task_list(
     return tasks
 
 
-def build_sample_direct(task: dict, pool: dict, output: str, rule: dict) -> dict:
+def build_sample_direct(
+    task: dict,
+    pool: dict,
+    output: str,
+    rule: dict,
+) -> dict:
     messages = [
         {"role": "system", "content": task["style"]["prompt"]},
         {"role": "user", "content": task["instruction"]},
@@ -265,6 +270,94 @@ def _build_sample_common(
     }
 
 
+async def generate_with_optional_json_mode(
+    client: OpenAIClient,
+    prompt: str,
+    system_prompt: str | None,
+    temperature: float,
+    max_tokens: int,
+) -> str:
+    """
+    Use JSON mode when the provider supports it.
+    Fall back to ordinary generation for OpenAI-compatible providers
+    that reject response_format.
+    """
+    try:
+        resp = await client.generate(
+            prompt=prompt,
+            system_prompt=system_prompt,
+            temperature=temperature,
+            max_tokens=max_tokens,
+            response_format={"type": "json_object"},
+        )
+        return resp.content
+    except Exception as e:
+        message = str(e)
+
+        # Some OpenAI-compatible providers do not support response_format.
+        # In that case, retry once without JSON mode.
+        if (
+            "response_format" not in message
+            and "json_object" not in message
+            and "400" not in message
+        ):
+            raise
+
+        logger.warning(
+            "JSON mode not supported or rejected by provider; falling back. Error: %s",
+            message[:200],
+        )
+
+        resp = await client.generate(
+            prompt=prompt,
+            system_prompt=system_prompt,
+            temperature=temperature,
+            max_tokens=max_tokens,
+        )
+        return resp.content
+
+
+async def repair_json_pair(
+    client: OpenAIClient,
+    raw: str,
+) -> dict | None:
+    """
+    Repair a malformed paired response into:
+        {"instruction": "...", "output": "..."}
+
+    This is only used after parse_json_response(raw) fails.
+    """
+    repair_prompt = f"""把下面内容转换成严格 JSON。
+
+只能输出一个 JSON 对象，格式如下：
+{{"instruction":"...","output":"..."}}
+
+要求：
+- 不要输出 Markdown
+- 不要输出代码块
+- 不要输出解释
+- 不要输出中文
+- instruction 和 output 都必须是字符串
+- 如果原文里有用户问题，把它放到 instruction
+- 如果原文里有助手回复，把它放到 output
+- 如果原文缺少 instruction，请根据 output 生成一个简短藏文用户输入
+- 如果原文缺少 output，请根据 instruction 生成一个简短藏文助手回复
+
+原文：
+{raw}
+"""
+
+    raw_repaired = await generate_with_optional_json_mode(
+        client=client,
+        prompt=repair_prompt,
+        system_prompt="你是严格的JSON格式修复器。你只能输出JSON对象。",
+        temperature=0.0,
+        max_tokens=1024,
+    )
+
+    return parse_json_response(raw_repaired)
+
+
 class DataGenerator:
     def __init__(self, concurrency: int = 3, max_rounds: int = 5):
         self.concurrency = concurrency
@@ -279,11 +372,9 @@ class DataGenerator:
         self._lock = asyncio.Lock()
         self._checkpoint: set[str] = set()
         self._content_hashes: set[str] = set()
-
         self._start_time = 0.0
         self._file_handle = None
         self._reject_file_handle = None
-
         self._all_rules = load_quality_rules()
 
     @staticmethod
@@ -305,7 +396,6 @@ class DataGenerator:
             with output_file.open("r", encoding="utf-8") as f:
                 for line in f:
                     line = line.strip()
-
                     if not line:
                         continue
 
@@ -314,10 +404,8 @@ class DataGenerator:
                         self._checkpoint.add(obj["id"])
 
                         assistant = self._assistant_content(obj)
-
                         if assistant:
                             self._content_hashes.add(content_hash(assistant))
-
                     except Exception:
                         pass
 
@@ -367,7 +455,12 @@ class DataGenerator:
                 }
             )
 
-    async def _try_save_sample(self, sample: dict, task: dict, pool: dict) -> bool:
+    async def _try_save_sample(
+        self,
+        sample: dict,
+        task: dict,
+        pool: dict,
+    ) -> bool:
         assistant = self._assistant_content(sample)
         sample_hash = content_hash(assistant)
 
@@ -416,7 +509,6 @@ class DataGenerator:
             task_name=pool.get("L3_task", ""),
             rule=rule,
         )
-
         system_prompt = task["style"]["prompt"]
 
         async with semaphore:
@@ -436,8 +528,11 @@ class DataGenerator:
 
                     if reason is None:
                         sample = build_sample_direct(task, pool, output, rule)
-
-                        score = estimate_quality_score(output, rule, field_name="output")
+                        score = estimate_quality_score(
+                            output,
+                            rule,
+                            field_name="output",
+                        )
                         sample["metadata"]["quality_score"] = score
                         sample["metadata"]["quality_tier"] = (
                             "gold" if score >= 0.9 else "silver"
@@ -445,7 +540,6 @@ class DataGenerator:
 
                         if await self._try_save_sample(sample, task, pool):
                             return True
-
                     else:
                         await self._record_reject(
                             task=task,
@@ -490,21 +584,23 @@ class DataGenerator:
             difficulty_guidance=task["difficulty_guidance"],
             rule=rule,
         )
-
         system_prompt = task["style"]["prompt"]
 
         async with semaphore:
             for attempt in range(3):
                 try:
-                    resp = await client.generate(
+                    raw = await generate_with_optional_json_mode(
+                        client=client,
                         prompt=prompt,
                         system_prompt=system_prompt,
                         temperature=float(rule.get("temperature", 0.9)),
                         max_tokens=int(rule.get("max_tokens", 4096)),
                     )
 
-                    raw = resp.content
                     parsed = parse_json_response(raw)
+
+                    if not parsed:
+                        parsed = await repair_json_pair(client, raw)
 
                     if not parsed:
                         await self._record_reject(
@@ -517,15 +613,20 @@ class DataGenerator:
                         )
                         continue
 
-                    instruction = clean_text_for_rule(parsed.get("instruction", ""), rule)
-                    output = clean_text_for_rule(parsed.get("output", ""), rule)
+                    instruction = clean_text_for_rule(
+                        parsed.get("instruction", ""),
+                        rule,
+                    )
+                    output = clean_text_for_rule(
+                        parsed.get("output", ""),
+                        rule,
+                    )
 
                     instr_reason = quality_reason(
                         instruction,
                         rule,
                         field_name="instruction",
                     )
-
                     out_reason = quality_reason(
                         output,
                         rule,
@@ -541,7 +642,11 @@ class DataGenerator:
                             rule,
                         )
 
-                        score = estimate_quality_score(output, rule, field_name="output")
+                        score = estimate_quality_score(
+                            output,
+                            rule,
+                            field_name="output",
+                        )
                         sample["metadata"]["quality_score"] = score
                         sample["metadata"]["quality_tier"] = (
                             "gold" if score >= 0.9 else "silver"
@@ -549,7 +654,6 @@ class DataGenerator:
 
                         if await self._try_save_sample(sample, task, pool):
                             return True
-
                     else:
                         await self._record_reject(
                             task=task,
@@ -623,7 +727,6 @@ class DataGenerator:
         self._load_checkpoint(output_file)
 
         already_done = self._completed_target_count(count)
-
         if already_done >= count:
             logger.info("Already have %d samples. Done!", already_done)
             return
@@ -635,8 +738,8 @@ class DataGenerator:
         )
 
         semaphore = asyncio.Semaphore(self.concurrency)
-
         self._start_time = time.time()
+
         self._file_handle = output_file.open("a", encoding="utf-8")
         self._reject_file_handle = reject_file.open("a", encoding="utf-8")
 
@@ -659,7 +762,11 @@ class DataGenerator:
                 if not missing_numbers:
                     break
 
-                tasks = build_task_list(pool, missing_numbers, seed=42 + round_no)
+                tasks = build_task_list(
+                    pool,
+                    missing_numbers,
+                    seed=42 + round_no,
+                )
 
                 logger.info(
                     "Round %d/%d: %d samples still missing",
@@ -672,6 +779,7 @@ class DataGenerator:
 
                 for batch_start in range(0, len(tasks), batch_size):
                     batch = tasks[batch_start : batch_start + batch_size]
+
                     coros = [
                         gen_fn(client, task, pool, rule, semaphore)
                         for task in batch
